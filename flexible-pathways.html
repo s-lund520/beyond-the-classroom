@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flexible Pathways | Beyond the Classroom</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root { --blue-dark:#1A5FA8; --blue-mid:#2178D4; --blue-light:#EBF3FC; --blue-border:#B5D4F4; --white:#ffffff; --gray-text:#4a5568; --radius:12px; --radius-sm:8px; --shadow:0 2px 12px rgba(26,95,168,0.08); }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:'Lato',sans-serif; font-size:17px; color:#2d3748; background:var(--white); line-height:1.7; }
+    .skip-link { position:absolute; top:-40px; left:0; background:var(--blue-dark); color:white; padding:8px 16px; z-index:100; border-radius:0 0 var(--radius-sm) 0; font-size:14px; transition:top 0.2s; }
+    .skip-link:focus { top:0; }
+    header { background:var(--blue-dark); position:sticky; top:0; z-index:50; box-shadow:0 2px 8px rgba(0,0,0,0.15); }
+    .header-inner { max-width:1100px; margin:0 auto; padding:0 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+    .logo { display:flex; align-items:center; gap:10px; text-decoration:none; padding:14px 0; }
+    .logo-icon { width:42px; height:42px; background:white; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; overflow:hidden; padding:3px; }
+    .logo-text { font-family:'Nunito',sans-serif; font-weight:700; font-size:18px; color:white; line-height:1.2; }
+    .logo-sub { font-size:11px; color:rgba(255,255,255,0.75); font-weight:400; font-family:'Lato',sans-serif; }
+    .menu-toggle { display:none; background:none; border:none; cursor:pointer; padding:8px; flex-direction:column; gap:5px; }
+    .menu-toggle span { display:block; width:24px; height:2px; background:white; border-radius:2px; transition:0.3s; }
+    nav ul { list-style:none; display:flex; flex-wrap:wrap; gap:2px; }
+    nav a { display:block; color:rgba(255,255,255,0.85); text-decoration:none; font-size:14px; padding:18px 12px; border-bottom:3px solid transparent; transition:color 0.2s,border-color 0.2s; white-space:nowrap; }
+    nav a:hover, nav a:focus, nav a.active { color:white; border-bottom-color:white; outline:none; }
+    .district-bar { background:var(--blue-light); border-bottom:1px solid var(--blue-border); padding:12px 24px; text-align:center; font-size:14px; color:var(--blue-dark); display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap; }
+    .district-bar a { color:var(--blue-dark); font-weight:700; text-decoration:underline; }
+    .page-header { background:#E1F5EE; border-bottom:1px solid #9FE1CB; padding:40px 24px 32px; }
+    .page-header-inner { max-width:1100px; margin:0 auto; }
+    .page-header h1 { font-family:'Nunito',sans-serif; font-size:clamp(24px,4vw,34px); font-weight:700; color:#0F6E56; margin-bottom:10px; }
+    .page-header p { font-size:16px; color:#085041; max-width:680px; line-height:1.8; }
+    main { max-width:1100px; margin:0 auto; padding:40px 24px 60px; }
+    .resource-list { display:flex; flex-direction:column; gap:18px; }
+    .resource-item { background:#E1F5EE; border:2px solid #0F6E56; border-radius:var(--radius); padding:22px 26px; display:flex; align-items:center; gap:20px; box-shadow:var(--shadow); flex-wrap:wrap; transition:box-shadow 0.15s,border-color 0.15s; }
+    .resource-item:hover { border-color:#0F6E56; box-shadow:0 4px 18px rgba(0,0,0,0.10); }
+    .r-icon { font-size:28px; flex-shrink:0; width:48px; text-align:center; color:#0F6E56; }
+    .r-info { flex:1; min-width:200px; }
+    .r-info h2 { font-family:'Nunito',sans-serif; font-size:18px; font-weight:700; color:#0F6E56; margin-bottom:5px; }
+    .r-info p { font-size:15px; color:#085041; line-height:1.6; }
+    .visit-btn { display:inline-block; background:#0F6E56; color:white; text-decoration:none; font-size:15px; font-weight:700; padding:11px 24px; border-radius:30px; white-space:nowrap; transition:background 0.2s,transform 0.15s; flex-shrink:0; }
+    .visit-btn:hover, .visit-btn:focus { opacity:0.88; transform:translateY(-1px); outline:3px solid #0F6E56; }
+    footer { background:var(--blue-dark); color:rgba(255,255,255,0.8); text-align:center; padding:28px 24px; font-size:14px; line-height:1.8; }
+    footer a { color:white; text-decoration:underline; }
+    @media (max-width:680px) {
+      .menu-toggle { display:flex; }
+      nav ul { display:none; flex-direction:column; gap:0; background:var(--blue-dark); position:absolute; top:100%; left:0; right:0; border-top:1px solid rgba(255,255,255,0.15); z-index:40; }
+      nav ul.open { display:flex; }
+      nav a { padding:14px 24px; border-bottom:1px solid rgba(255,255,255,0.1); border-left:3px solid transparent; font-size:16px; }
+      nav a.active, nav a:hover { border-left-color:white; border-bottom-color:transparent; }
+      header { position:relative; }
+      .resource-item { flex-direction:column; align-items:flex-start; gap:14px; }
+      .visit-btn { width:100%; text-align:center; }
+    }
+
+    .resource-item {
+      background: #E1F5EE;
+      border: 2px solid #0F6E56;
+    }
+    .resource-item:hover {
+      border-color: #0F6E56;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.10);
+    }
+    .r-icon {
+      font-size:28px; flex-shrink:0; width:48px; text-align:center;
+      color: #0F6E56;
+    }
+    .r-info h2 {
+      font-family:'Nunito',sans-serif; font-size:18px; font-weight:700;
+      color: #0F6E56; margin-bottom:5px;
+    }
+    .r-info p {
+      font-size:15px; line-height:1.6;
+      color: #085041;
+    }
+    .visit-btn {
+      display:inline-block;
+      background: #0F6E56;
+      color: white;
+      text-decoration:none; font-size:15px; font-weight:700;
+      padding:11px 24px; border-radius:30px; white-space:nowrap;
+      transition:background 0.2s,transform 0.15s; flex-shrink:0;
+    }
+    .visit-btn:hover, .visit-btn:focus {
+      opacity: 0.88;
+      transform:translateY(-1px);
+      outline:3px solid #0F6E56;
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="logo" aria-label="Beyond the Classroom home">
+        <div class="logo-icon"><img src="logo.png" alt="Beyond the Classroom logo" style="width:100%; height:100%; object-fit:contain;" /></div>
+        <div><div class="logo-text">Beyond the Classroom</div><div class="logo-sub">Family Resource Hub</div></div>
+      </a>
+      <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" onclick="toggleMenu(this)">
+        <span></span><span></span><span></span>
+      </button>
+      <nav aria-label="Main navigation">
+        <ul id="nav-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services &amp; Support</a></li>
+          <li><a href="flexible-pathways.html" class="active">Flexible Pathways</a></li>
+          <li><a href="mental-health.html">Mental Health</a></li>
+          <li><a href="employment.html">Employment</a></li>
+          <li><a href="legal.html">Legal</a></li>
+          <li><a href="tutoring.html">Tutoring</a></li>
+          <li><a href="life-sharing.html">Life Sharing</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="district-bar" role="complementary">
+    <img src="U32.png" alt="U-32 Middle and High School logo" style="height:32px; width:auto; vertical-align:middle; margin-right:8px; background:white; border-radius:4px; padding:2px 4px;" />Partnered with <a href="https://u32.wcuusd.org/" target="_blank" rel="noopener">U-32 Middle and High School</a> — serving our students and families
+  </div>
+  <div class="page-header">
+    <div class="page-header-inner">
+      <h1>Flexible Pathways</h1>
+      <p>Flexible Pathways are programs and opportunities that help students build skills, explore interests, and find their way — inside and outside the classroom. These resources include day programs, community activities, and transportation support to help your student stay connected and engaged.</p>
+    </div>
+  </div>
+  <main id="main-content">
+    <div class="resource-list">
+
+      <div class="resource-item">
+        <div class="r-icon" aria-hidden="true"><i class="fa-solid fa-graduation-cap"></i></div>
+        <div class="r-info">
+          <h2>Central Vermont Career Center (CVCC)</h2>
+          <p>Serves U-32 students and other central Vermont high schoolers with hands-on career and technical education programs in a wide range of fields. Students spend 800 hours a year building real skills that prepare them for college and careers — at no cost to high school students.</p>
+        </div>
+        <a href="https://www.cvtcc.org/" class="visit-btn" target="_blank" rel="noopener" aria-label="Visit Central Vermont Career Center website">Visit site</a>
+      </div>
+
+      <div class="resource-item">
+        <div class="r-icon" aria-hidden="true"><i class="fa-solid fa-wrench"></i></div>
+        <div class="r-info">
+          <h2>Randolph Technical Career Center (RTCC)</h2>
+          <p>Located right in Randolph, RTCC offers technical career preparation programs for area youth and adults in a respectful and supportive environment. Serves students from U-32 and surrounding schools with hands-on training in skilled trades and technical fields.</p>
+        </div>
+        <a href="https://rtcc.orangesouthwest.org/" class="visit-btn" target="_blank" rel="noopener" aria-label="Visit Randolph Technical Career Center website">Visit site</a>
+      </div>
+
+      <div class="resource-item">
+        <div class="r-icon" aria-hidden="true"><i class="fa-solid fa-hammer"></i></div>
+        <div class="r-info">
+          <h2>ReSOURCE Vermont</h2>
+          <p>A nonprofit community enterprise empowering Vermonters through workforce development, poverty relief, and environmental stewardship since 1991. Offers the Career Start program specifically for high school students — providing hands-on job skills training in real work settings. Tuition is waived for qualifying Vermonters.</p>
+        </div>
+        <a href="https://resourcevt.org/" class="visit-btn" target="_blank" rel="noopener" aria-label="Visit ReSOURCE Vermont website">Visit site</a>
+      </div>
+
+      <div class="resource-item">
+        <div class="r-icon" aria-hidden="true"><i class="fa-solid fa-map-location-dot"></i></div>
+        <div class="r-info">
+          <h2>Northlands Job Corps</h2>
+          <p>A free federal program for youth ages 16–24 offering career training, academic education, and job placement support on a 66-acre campus in Vergennes, VT. Programs include welding, carpentry, culinary arts, health careers, and more — with housing, meals, and support included at no cost to students or families.</p>
+        </div>
+        <a href="https://northlands.jobcorps.gov/" class="visit-btn" target="_blank" rel="noopener" aria-label="Visit Northlands Job Corps website">Visit site</a>
+      </div>
+
+      <div class="resource-item">
+        <div class="r-icon" aria-hidden="true"><i class="fa-solid fa-school"></i></div>
+        <div class="r-info">
+          <h2>Programs at U-32</h2>
+          <p>U-32 Middle and High School offers a variety of in-school flexible pathway programs for students. Talk to your student's counselor or advisor to learn what options are available to support their individual goals and interests.</p>
+        </div>
+        <a href="https://u32.wcuusd.org/" class="visit-btn" target="_blank" rel="noopener" aria-label="Visit U-32 School website">Visit site</a>
+      </div>
+
+    </div>
+  </main>
+  <footer>
+    <p>Beyond the Classroom &mdash; A resource hub for U-32 Middle and High School families</p>
+    <p style="margin-top:6px;">Questions? Contact us at <a href="mailto:youremail@u-32.org">youremail@u-32.org</a></p>
+    <p style="margin-top:6px; font-size:12px; opacity:0.7;">This site is for informational purposes only. Resources are provided as a courtesy and do not constitute an endorsement by the school district.</p>
+  </footer>
+  <script>
+    function toggleMenu(btn) { var menu=document.getElementById('nav-menu'); var isOpen=menu.classList.toggle('open'); btn.setAttribute('aria-expanded',isOpen); btn.setAttribute('aria-label',isOpen?'Close menu':'Open menu'); }
+    document.addEventListener('click',function(e){ if(!e.target.closest('header')){ document.getElementById('nav-menu').classList.remove('open'); } });
+  </script>
+</body>
+</html>
