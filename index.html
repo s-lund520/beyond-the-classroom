@@ -360,7 +360,73 @@
       line-height: 1.8;
     }
 
-    /* ── FOOTER ── */
+    /* ── SEARCH ── */
+    .search-wrap {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      max-width: 480px;
+    }
+    .search-input {
+      flex: 1;
+      padding: 12px 18px;
+      border-radius: 30px;
+      border: none;
+      font-size: 15px;
+      font-family: 'Lato', sans-serif;
+      outline: none;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    .search-input::placeholder { color: #999; }
+    .search-btn {
+      background: white;
+      color: #1A5FA8;
+      border: none;
+      border-radius: 30px;
+      padding: 12px 18px;
+      font-size: 15px;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      transition: background 0.2s;
+    }
+    .search-btn:hover { background: #EBF3FC; }
+
+    .search-results {
+      display: none;
+      margin-top: 24px;
+      background: white;
+      border: 1.5px solid var(--blue-border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .search-results.visible { display: block; }
+    .search-results-header {
+      background: #EBF3FC;
+      padding: 10px 18px;
+      font-size: 13px;
+      color: #1A5FA8;
+      font-weight: 700;
+      border-bottom: 1px solid var(--blue-border);
+    }
+    .search-result-item {
+      padding: 14px 18px;
+      border-bottom: 1px solid #f0f4f8;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .search-result-item:last-child { border-bottom: none; }
+    .search-result-item:hover { background: #f7faff; }
+    .result-info { flex: 1; min-width: 180px; }
+    .result-info h3 { font-family: 'Nunito', sans-serif; font-size: 15px; font-weight: 700; color: #1A5FA8; margin-bottom: 2px; }
+    .result-info p { font-size: 13px; color: var(--gray-text); }
+    .result-info .result-tag { font-size: 11px; color: #1A5FA8; background: #EBF3FC; border-radius: 10px; padding: 2px 8px; display: inline-block; margin-bottom: 3px; }
+    .result-btn { background: #1A5FA8; color: white; border: none; border-radius: 20px; padding: 7px 16px; font-size: 13px; font-weight: 700; cursor: pointer; text-decoration: none; display: inline-block; white-space: nowrap; }
+    .result-btn:hover { background: #2178D4; }
+    .no-results { padding: 20px 18px; color: var(--gray-text); font-size: 14px; text-align: center; }
     footer {
       background: var(--blue-dark);
       color: rgba(255,255,255,0.8);
@@ -605,6 +671,10 @@
       <h1 id="hero-heading">Beyond the Classroom</h1>
       <p>Resources for learning, independence, and opportunity.</p>
       <a href="#resources" class="hero-btn">Explore Resources</a>
+      <div class="search-wrap">
+        <input class="search-input" type="search" id="siteSearch" placeholder="Search resources..." aria-label="Search this site" oninput="doSearch(this.value)" />
+        <button class="search-btn" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
     </div>
   </section>
 
@@ -615,6 +685,12 @@
 
   <!-- MAIN -->
   <main id="main-content">
+
+    <!-- SEARCH RESULTS -->
+    <div class="search-results" id="searchResults" role="region" aria-label="Search results">
+      <div class="search-results-header" id="searchResultsHeader"></div>
+      <div id="searchResultsList"></div>
+    </div>
 
     <!-- WELCOME -->
     <div class="welcome-box" role="region" aria-labelledby="welcome-heading">
@@ -710,6 +786,109 @@
   </footer>
 
   <script>
+    // ── SITE SEARCH DATABASE ──────────────────────────────────────────
+    var resources = [
+      // Services & Support — General
+      { name: "Easterseals Vermont", desc: "Programs for children, families, and adults across Vermont", url: "https://eastersealsvt.org/", tag: "Services & Support" },
+      { name: "Capstone Community Action", desc: "Food, housing, transportation, and skill-building programs", url: "https://capstonevt.org/", tag: "Services & Support" },
+      { name: "Howard Center", desc: "Mental health, developmental, and youth services statewide", url: "https://howardcenter.org/", tag: "Services & Support" },
+      { name: "Vermont Care Partners", desc: "Statewide network of mental health and disability agencies", url: "https://vermontcarepartners.org/", tag: "Services & Support" },
+      { name: "Vermont Family Network", desc: "Free support for families of children with special needs", url: "https://www.vermontfamilynetwork.org/", tag: "Services & Support" },
+      // Services — Independent Living
+      { name: "PS Services (formerly Pride TBI)", desc: "Brain injury support and training — 802-479-5801", url: "https://www.pridetbi.com/", tag: "Independent Living" },
+      { name: "Vermont Center for Independent Living (VCIL)", desc: "Dignity, independence, and civil rights for Vermonters with disabilities", url: "https://www.vcil.org/", tag: "Independent Living" },
+      { name: "Hunger Free Vermont", desc: "SNAP, food shelves, school meals, and nutrition programs", url: "https://www.hungerfreevt.org/", tag: "Independent Living" },
+      // Services — Developmental Disabilities
+      { name: "Washington County Mental Health — CDS", desc: "Developmental disabilities, autism, and TBI services — 802-229-0591", url: "https://www.wcmhs.org/community-development-services", tag: "Developmental Disabilities" },
+      { name: "Transition II", desc: "Independence through employment and home care — 866-572-7127", url: "https://transitionii.com/", tag: "Developmental Disabilities" },
+      { name: "Upper Valley Services (Orange County)", desc: "Person-centered DD supports in Orange County — 802-728-4476", url: "https://www.uvs-vt.org/", tag: "Developmental Disabilities" },
+      { name: "Specialized Community Care (SCC)", desc: "Complex needs and developmental disability services — 802-388-6388", url: "https://sccvt.org/", tag: "Developmental Disabilities" },
+      { name: "Special Needs Support Center (SNSC)", desc: "Inclusive community care in the Upper Valley", url: "https://snsc-uv.org/", tag: "Developmental Disabilities" },
+      // Services — Neurodiverse
+      { name: "All Brains Belong VT", desc: "Neuroinclusive healthcare and community for all kinds of minds", url: "https://allbrainsbelong.org/", tag: "Neurodiverse" },
+      { name: "Aspire Living & Learning", desc: "Behavioral health, residential, and day services", url: "https://allinc.org/", tag: "Neurodiverse" },
+      // Services — Vision & Hearing
+      { name: "Vermont Association for the Blind and Visually Impaired (VABVI)", desc: "Free vision services for all ages — 802-863-1358", url: "https://www.vabvi.org/", tag: "Vision & Hearing" },
+      { name: "Vermont Association of the Deaf (VTAD)", desc: "Rights and advocacy for the Deaf community — 802-858-2323", url: "https://www.deafvermont.com/", tag: "Vision & Hearing" },
+      // Flexible Pathways
+      { name: "Central Vermont Career Center", desc: "Career and technical education for U-32 students", url: "https://www.cvtcc.org/", tag: "Flexible Pathways" },
+      { name: "Randolph Technical Career Center", desc: "Technical career preparation in Randolph", url: "https://rtcc.orangesouthwest.org/", tag: "Flexible Pathways" },
+      { name: "ReSOURCE Vermont", desc: "Career Start job training program for high school students", url: "https://resourcevt.org/", tag: "Flexible Pathways" },
+      { name: "Northlands Job Corps", desc: "Free career training for youth ages 16-24 in Vergennes VT", url: "https://northlands.jobcorps.gov/", tag: "Flexible Pathways" },
+      { name: "Programs at U-32", desc: "In-school flexible pathway options — talk to your counselor", url: "https://u32.wcuusd.org/", tag: "Flexible Pathways" },
+      // Mental Health
+      { name: "Pathways Vermont", desc: "Peer support, housing, and mental health community programs", url: "https://www.pathwaysvermont.org/", tag: "Mental Health" },
+      { name: "Another Way VT", desc: "Peer-led mental health and community support", url: "https://www.anotherwayvt.org/", tag: "Mental Health" },
+      { name: "VAMHAR", desc: "Vermont mental health and addiction recovery advocacy", url: "https://www.vamhar.org/", tag: "Mental Health" },
+      { name: "988 Suicide & Crisis Lifeline", desc: "Free 24/7 crisis support — call or text 988", url: "https://988lifeline.org/", tag: "Mental Health" },
+      { name: "Vermont 211", desc: "Free helpline connecting Vermonters to local services — dial 2-1-1", url: "https://vermont211.org/", tag: "Mental Health" },
+      // Employment
+      { name: "HireAbility Vermont", desc: "Vocational rehabilitation, job placement, and employment support", url: "https://www.hireabilityvt.com/", tag: "Employment" },
+      { name: "APSE", desc: "National organization supporting inclusive employment for people with disabilities", url: "https://apse.org/", tag: "Employment" },
+      // Legal
+      { name: "Vermont Legal Aid — Disability Law", desc: "Free legal help for Vermonters with disabilities", url: "https://www.vtlegalaid.org/legal-projects/disability-law", tag: "Legal" },
+      { name: "Green Mountain Self-Advocates", desc: "Disability rights and self-advocacy organization", url: "https://gmsavt.org/", tag: "Legal" },
+      { name: "Vermont Law Help", desc: "Plain-language legal resource covering disability rights and benefits", url: "https://vtlawhelp.org/", tag: "Legal" },
+      { name: "Parental Rights in Special Education", desc: "Vermont's guide to parental rights under IDEA", url: "https://education.vermont.gov/student-support/vermont-special-education/resources-for-families", tag: "Legal" },
+      { name: "Vermont Agency of Education", desc: "Special education services and transition planning", url: "https://education.vermont.gov/", tag: "Legal" },
+      // Tutoring & Education
+      { name: "Stern Center for Language and Learning", desc: "Specialized tutoring for dyslexia and learning differences", url: "https://sterncenter.org/", tag: "Tutoring & Education" },
+      { name: "Think College Vermont — UVM", desc: "Inclusive college program for students with intellectual disabilities", url: "https://www.uvm.edu/cess/welcome-think-college-vermont", tag: "Tutoring & Education" },
+      { name: "Think College — National College Search", desc: "Find inclusive higher education programs across the country", url: "https://thinkcollege.net/college-search", tag: "Tutoring & Education" },
+      // Life Sharing
+      { name: "Heartbeet Lifesharing", desc: "Camphill community and biodynamic farm in Vermont", url: "https://www.camphill.org/communities/heartbeet-lifesharing/", tag: "Life Sharing" },
+      { name: "Riverflow Community", desc: "Intentional community and shared living in Vermont", url: "https://www.riverflowcommunity.org/", tag: "Life Sharing" },
+      // Assistive Technology
+      { name: "Vermont Assistive Technology Program (ATP)", desc: "Try, borrow, and access AT devices at little or no cost", url: "https://atp.vermont.gov/", tag: "Assistive Technology" },
+      { name: "AT4ALL Vermont", desc: "Free online exchange for assistive technology and durable medical equipment", url: "https://vt.at4all.com/", tag: "Assistive Technology" },
+      { name: "CARES Team — UVM Center on Disability & Community Inclusion", desc: "Support and resources for individuals with disabilities and families", url: "https://cdci.w3.uvm.edu/blog/cdcicares-resources/", tag: "Assistive Technology" },
+      // Government Services
+      { name: "Medicaid", desc: "Free or low-cost health coverage for eligible individuals", url: "https://www.medicaid.gov/", tag: "Government Services" },
+      { name: "Vermont DD Services — Apply", desc: "Apply for Vermont developmental disability services", url: "https://ddsd.vermont.gov/apply-dd-services", tag: "Government Services" },
+      { name: "Vermont DD Services — Directory", desc: "Find approved providers for developmental disability services", url: "https://ddsd.vermont.gov/services-providers", tag: "Government Services" },
+      { name: "Social Security — SSI", desc: "Monthly financial assistance for individuals with disabilities", url: "https://www.ssa.gov/ssi", tag: "Government Services" },
+      { name: "Vermont Public Service — Disability Resources", desc: "Utility, phone, and internet assistance for people with disabilities", url: "https://publicservice.vermont.gov/resources-people-disabilities", tag: "Government Services" },
+      { name: "Vermont Agency of Education — Special Education", desc: "State special education services, rights, and transition planning", url: "https://education.vermont.gov/student-support/vermont-special-education", tag: "Government Services" },
+    ];
+
+    function doSearch(query) {
+      var results = document.getElementById('searchResults');
+      var list = document.getElementById('searchResultsList');
+      var header = document.getElementById('searchResultsHeader');
+      var q = query.trim().toLowerCase();
+
+      if (q.length < 2) {
+        results.classList.remove('visible');
+        return;
+      }
+
+      var matches = resources.filter(function(r) {
+        return r.name.toLowerCase().includes(q) ||
+               r.desc.toLowerCase().includes(q) ||
+               r.tag.toLowerCase().includes(q);
+      });
+
+      results.classList.add('visible');
+
+      if (matches.length === 0) {
+        header.textContent = 'No results found';
+        list.innerHTML = '<div class="no-results">Try a different search term — or browse the topics below.</div>';
+        return;
+      }
+
+      header.textContent = matches.length + ' result' + (matches.length > 1 ? 's' : '') + ' for "' + query.trim() + '"';
+      list.innerHTML = matches.map(function(r) {
+        return '<div class="search-result-item">' +
+          '<div class="result-info">' +
+            '<span class="result-tag">' + r.tag + '</span>' +
+            '<h3>' + r.name + '</h3>' +
+            '<p>' + r.desc + '</p>' +
+          '</div>' +
+          '<a href="' + r.url + '" class="result-btn" target="_blank" rel="noopener">Visit site</a>' +
+        '</div>';
+      }).join('');
+    }
+
     function toggleMenu(btn) {
       var menu = document.getElementById('nav-menu');
       var isOpen = menu.classList.toggle('open');
