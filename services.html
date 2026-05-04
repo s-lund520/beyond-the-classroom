@@ -193,6 +193,25 @@
       padding: 40px 24px 60px;
     }
 
+    .category-section {
+      margin-bottom: 40px;
+    }
+    .category-title {
+      font-family: 'Nunito', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: #1A5FA8;
+      margin-bottom: 16px;
+      padding: 10px 16px;
+      background: #EBF3FC;
+      border-left: 5px solid #1A5FA8;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .category-title i { font-size: 18px; color: #1A5FA8; }
+
     .resource-list {
       display: flex;
       flex-direction: column;
@@ -392,162 +411,178 @@
   </div>
 
   <main id="main-content">
-    <div class="resource-list">
 
-      <div class="resource-item">
-        <div class="r-icon" aria-hidden="true"><i class="fa-solid fa-hands-holding-circle"></i></div>
-        <div class="r-info">
-          <h2>Easterseals Vermont</h2>
-          <p>Provides a broad range of programs for children, families, and adults — including child and family support, youth development, transportation services, and community-based care across Vermont.</p>
+    <!-- Category 1: General Support -->
+    <div class="category-section">
+      <h2 class="category-title"><i class="fa-solid fa-hands-holding-circle"></i> General Support</h2>
+      <div class="resource-list">
+        <div class="resource-item">
+          <div class="r-icon" aria-hidden="true"><i class="fa-solid fa-hands-holding-circle"></i></div>
+          <div class="r-info">
+            <h2>Easterseals Vermont</h2>
+            <p>Provides a broad range of programs for children, families, and adults — including child and family support, youth development, transportation services, and community-based care across Vermont.</p>
+          </div>
+          <a href="https://eastersealsvt.org/" class="visit-btn" target="_blank" rel="noopener" aria-label="Visit Easterseals Vermont website">Visit site</a>
         </div>
-        <a href="https://eastersealsvt.org/" class="visit-btn" target="_blank" rel="noopener" aria-label="Visit Easterseals Vermont website">Visit site</a>
-      </div>
-
-      <div class="resource-item">
-        <div class="r-icon" aria-hidden="true"><i class="fa-solid fa-mountain-sun"></i></div>
-        <div class="r-info">
-          <h2>Capstone Community Action</h2>
-          <p>A community action agency serving central Vermont families with food and nutrition support, housing assistance, childcare, transportation, and skill-building programs. Available in multiple languages to serve all families.</p>
+        <div class="resource-item">
+          <div class="r-icon" aria-hidden="true"><i class="fa-solid fa-mountain-sun"></i></div>
+          <div class="r-info">
+            <h2>Capstone Community Action</h2>
+            <p>A community action agency serving central Vermont families with food and nutrition support, housing assistance, childcare, transportation, and skill-building programs. Available in multiple languages to serve all families.</p>
+          </div>
+          <a href="https://capstonevt.org/" class="visit-btn" target="_blank" rel="noopener" aria-label="Visit Capstone Community Action website">Visit site</a>
         </div>
-        <a href="https://capstonevt.org/" class="visit-btn" target="_blank" rel="noopener" aria-label="Visit Capstone Community Action website">Visit site</a>
-      </div>
-
-      <div class="resource-item">
-        <div class="r-icon" aria-hidden="true"><i class="fa-solid fa-brain"></i></div>
-        <div class="r-info">
-          <h2>PS Services (formerly Pride TBI)</h2>
-          <p>Offers specialized support services, helpful resources, and training for individuals and families navigating brain injury and related challenges. Call 802-479-5801 for more information.</p>
+        <div class="resource-item">
+          <div class="r-icon" aria-hidden="true"><i class="fa-solid fa-hospital"></i></div>
+          <div class="r-info">
+            <h2>Howard Center</h2>
+            <p>One of Vermont's largest nonprofit human services agencies, offering a wide range of community programs including developmental services, mental health support, substance use services, and youth and family programs across the state.</p>
+          </div>
+          <a href="https://howardcenter.org/" class="visit-btn" target="_blank" rel="noopener" aria-label="Visit Howard Center website">Visit site</a>
         </div>
-        <a href="https://www.pridetbi.com/" class="visit-btn" target="_blank" rel="noopener" aria-label="Visit PS Services website">Visit site</a>
-      </div>
-
-      <div class="resource-item">
-        <div class="r-icon" aria-hidden="true"><i class="fa-solid fa-house-chimney"></i></div>
-        <div class="r-info">
-          <h2>Vermont Center for Independent Living (VCIL)</h2>
-          <p>A nonprofit directed and staffed by people with disabilities, working to promote dignity, independence, and civil rights for Vermonters with disabilities. Offers peer support, home access programs, ADA assistance, assistive technology, and information and referral services statewide.</p>
+        <div class="resource-item">
+          <div class="r-icon" aria-hidden="true"><i class="fa-solid fa-globe"></i></div>
+          <div class="r-info">
+            <h2>Vermont Care Partners</h2>
+            <p>A statewide network of nonprofit agencies providing mental health, substance use, and developmental services across Vermont. Use their directory to find the right local agency for your family's needs.</p>
+          </div>
+          <a href="https://vermontcarepartners.org/" class="visit-btn" target="_blank" rel="noopener" aria-label="Visit Vermont Care Partners website">Visit site</a>
         </div>
-        <a href="https://www.vcil.org/" class="visit-btn" target="_blank" rel="noopener" aria-label="Visit Vermont Center for Independent Living website">Visit site</a>
-      </div>
-
-      <div class="resource-item">
-        <div class="r-icon" aria-hidden="true"><i class="fa-solid fa-heart"></i></div>
-        <div class="r-info">
-          <h2>Washington County Mental Health — Community Developmental Services</h2>
-          <p>Serves individuals experiencing developmental disabilities, autism, and traumatic brain injury. Offers services supporting autonomy, independence, skill building, nursing, psychiatry, and residential care. Available 24/7 at 802-229-0591.</p>
+        <div class="resource-item">
+          <div class="r-icon" aria-hidden="true"><i class="fa-solid fa-people-roof"></i></div>
+          <div class="r-info">
+            <h2>Vermont Family Network</h2>
+            <p>Empowers and supports all Vermont children, youth, and families — especially those with disabilities or special health needs. Offers free and confidential help understanding your child's education plan, connecting to community resources, and navigating health and special education systems. Call 802-876-5315.</p>
+          </div>
+          <a href="https://www.vermontfamilynetwork.org/" class="visit-btn" target="_blank" rel="noopener" aria-label="Visit Vermont Family Network website">Visit site</a>
         </div>
-        <a href="https://www.wcmhs.org/community-development-services" class="visit-btn" target="_blank" rel="noopener" aria-label="Visit Washington County Mental Health Community Developmental Services website">Visit site</a>
-      </div>
-
-      <div class="resource-item">
-        <div class="r-icon" aria-hidden="true"><i class="fa-solid fa-star"></i></div>
-        <div class="r-info">
-          <h2>Aspire Living &amp; Learning</h2>
-          <p>A nonprofit human services and educational organization offering behavioral health, clinical, residential, educational and transitional services, community-based day services, and employment supports for individuals and families.</p>
-        </div>
-        <a href="https://allinc.org/" class="visit-btn" target="_blank" rel="noopener" aria-label="Visit Aspire Living and Learning website">Visit site</a>
-      </div>
-
-      <div class="resource-item">
-        <div class="r-icon" aria-hidden="true"><i class="fa-solid fa-hand-holding-heart"></i></div>
-        <div class="r-info">
-          <h2>Special Needs Support Center (SNSC)</h2>
-          <p>Provides inclusive community care through adult and youth programming, advocacy and support services, and community resources for individuals with special needs and their families in the Upper Valley region.</p>
-        </div>
-        <a href="https://snsc-uv.org/" class="visit-btn" target="_blank" rel="noopener" aria-label="Visit Special Needs Support Center website">Visit site</a>
-      </div>
-
-      <div class="resource-item">
-        <div class="r-icon" aria-hidden="true"><i class="fa-solid fa-puzzle-piece"></i></div>
-        <div class="r-info">
-          <h2>All Brains Belong VT</h2>
-          <p>A Vermont-based organization focused on neuroinclusive healthcare and community. Offers programs that celebrate and support all kinds of minds, with an emphasis on belonging and inclusion for neurodivergent individuals.</p>
-        </div>
-        <a href="https://allbrainsbelong.org/" class="visit-btn" target="_blank" rel="noopener" aria-label="Visit All Brains Belong VT website">Visit site</a>
-      </div>
-
-      <div class="resource-item">
-        <div class="r-icon" aria-hidden="true"><i class="fa-solid fa-hospital"></i></div>
-        <div class="r-info">
-          <h2>Howard Center</h2>
-          <p>One of Vermont's largest nonprofit human services agencies, offering a wide range of community programs including developmental services, mental health support, substance use services, and youth and family programs across the state.</p>
-        </div>
-        <a href="https://howardcenter.org/" class="visit-btn" target="_blank" rel="noopener" aria-label="Visit Howard Center website">Visit site</a>
-      </div>
-
-      <div class="resource-item">
-        <div class="r-icon" aria-hidden="true"><i class="fa-solid fa-globe"></i></div>
-        <div class="r-info">
-          <h2>Vermont Care Partners</h2>
-          <p>A statewide network of nonprofit agencies providing mental health, substance use, and developmental services across Vermont. Use their directory to find the right local agency for your family's needs.</p>
-        </div>
-        <a href="https://vermontcarepartners.org/" class="visit-btn" target="_blank" rel="noopener" aria-label="Visit Vermont Care Partners website">Visit site</a>
-      </div>
-
-      <div class="resource-item">
-        <div class="r-icon" aria-hidden="true"><i class="fa-solid fa-people-roof"></i></div>
-        <div class="r-info">
-          <h2>Vermont Family Network</h2>
-          <p>Empowers and supports all Vermont children, youth, and families — especially those with disabilities or special health needs. Offers free and confidential help understanding your child's education plan, connecting to community resources, navigating health and special education systems, and advocating for your family. Call 802-876-5315 or email info@vtfn.org.</p>
-        </div>
-        <a href="https://www.vermontfamilynetwork.org/" class="visit-btn" target="_blank" rel="noopener" aria-label="Visit Vermont Family Network website">Visit site</a>
-      </div>
-
-
-      <div class="resource-item">
-        <div class="r-icon" aria-hidden="true"><i class="fa-solid fa-utensils"></i></div>
-        <div class="r-info">
-          <h2>Hunger Free Vermont</h2>
-          <p>Working to end hunger for all Vermonters through food access programs, advocacy, and community resources. Helps families connect to 3SquaresVT (SNAP), food shelves, school meals, and other nutrition programs statewide.</p>
-        </div>
-        <a href="https://www.hungerfreevt.org/" class="visit-btn" target="_blank" rel="noopener" aria-label="Visit Hunger Free Vermont website">Visit site</a>
-      </div>
-
-      <div class="resource-item">
-        <div class="r-icon" aria-hidden="true"><i class="fa-solid fa-arrow-right-to-bracket"></i></div>
-        <div class="r-info">
-          <h2>Transition II</h2>
-          <p>A Vermont nonprofit promoting independence for aging Vermonters and those with disabilities through employment, community involvement, and home care choices. Offers self-management support, budget guidance, and job matching for individuals with disabilities. Call 866-572-7127.</p>
-        </div>
-        <a href="https://transitionii.com/" class="visit-btn" target="_blank" rel="noopener" aria-label="Visit Transition II website">Visit site</a>
-      </div>
-
-      <div class="resource-item">
-        <div class="r-icon" aria-hidden="true"><i class="fa-solid fa-star"></i></div>
-        <div class="r-info">
-          <h2>Specialized Community Care (SCC)</h2>
-          <p>A Vermont Specialized Service Agency serving people with developmental and intellectual disabilities statewide. Known for working with individuals with unique and complex needs, SCC provides community-based supports that promote independence and quality of life. Call 802-388-6388.</p>
-        </div>
-        <a href="https://sccvt.org/" class="visit-btn" target="_blank" rel="noopener" aria-label="Visit Specialized Community Care website">Visit site</a>
-      </div>
-
-      <div class="resource-item">
-        <div class="r-icon" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></div>
-        <div class="r-info">
-          <h2>Upper Valley Services (Orange County)</h2>
-          <p>A state Designated Agency providing person-centered supports for individuals with developmental disabilities in Orange County and surrounding areas. Services include home and community supports, employment, clinical care, and crisis response. Bradford: 802-222-9235 | Randolph: 802-728-4476.</p>
-        </div>
-        <a href="https://www.uvs-vt.org/" class="visit-btn" target="_blank" rel="noopener" aria-label="Visit Upper Valley Services website">Visit site</a>
-      </div>
-
-      <div class="resource-item">
-        <div class="r-icon" aria-hidden="true"><i class="fa-solid fa-eye"></i></div>
-        <div class="r-info">
-          <h2>Vermont Association for the Blind and Visually Impaired (VABVI)</h2>
-          <p>Vermont's only private nonprofit providing free services to individuals with vision loss of all ages — from birth through adulthood. Services include orientation and mobility training, daily living skills, assistive technology, and volunteer transportation. Call 802-863-1358.</p>
-        </div>
-        <a href="https://www.vabvi.org/" class="visit-btn" target="_blank" rel="noopener" aria-label="Visit VABVI website">Visit site</a>
-      </div>
-
-      <div class="resource-item">
-        <div class="r-icon" aria-hidden="true"><i class="fa-solid fa-hands"></i></div>
-        <div class="r-info">
-          <h2>Vermont Association of the Deaf (VTAD)</h2>
-          <p>A Vermont nonprofit dedicated to protecting the rights of Deaf individuals and their families, empowering self-determination and independence, and advocating for equal opportunities in social, educational, and employment settings. Email: admin@deafvermont.com | Call 802-858-2323.</p>
-        </div>
-        <a href="https://www.deafvermont.com/" class="visit-btn" target="_blank" rel="noopener" aria-label="Visit Vermont Association of the Deaf website">Visit site</a>
       </div>
     </div>
+
+    <!-- Category 2: Independent Living -->
+    <div class="category-section">
+      <h2 class="category-title"><i class="fa-solid fa-house-chimney"></i> Independent Living</h2>
+      <div class="resource-list">
+        <div class="resource-item">
+          <div class="r-icon" aria-hidden="true"><i class="fa-solid fa-brain"></i></div>
+          <div class="r-info">
+            <h2>PS Services (formerly Pride TBI)</h2>
+            <p>Offers specialized support services, helpful resources, and training for individuals and families navigating brain injury and related challenges. Call 802-479-5801 for more information.</p>
+          </div>
+          <a href="https://www.pridetbi.com/" class="visit-btn" target="_blank" rel="noopener" aria-label="Visit PS Services website">Visit site</a>
+        </div>
+        <div class="resource-item">
+          <div class="r-icon" aria-hidden="true"><i class="fa-solid fa-person-walking"></i></div>
+          <div class="r-info">
+            <h2>Vermont Center for Independent Living (VCIL)</h2>
+            <p>A nonprofit directed and staffed by people with disabilities, working to promote dignity, independence, and civil rights for Vermonters with disabilities. Offers peer support, home access programs, ADA assistance, assistive technology, and information and referral services statewide.</p>
+          </div>
+          <a href="https://www.vcil.org/" class="visit-btn" target="_blank" rel="noopener" aria-label="Visit Vermont Center for Independent Living website">Visit site</a>
+        </div>
+        <div class="resource-item">
+          <div class="r-icon" aria-hidden="true"><i class="fa-solid fa-utensils"></i></div>
+          <div class="r-info">
+            <h2>Hunger Free Vermont</h2>
+            <p>Working to end hunger for all Vermonters through food access programs, advocacy, and community resources. Helps families connect to 3SquaresVT (SNAP), food shelves, school meals, and other nutrition programs statewide.</p>
+          </div>
+          <a href="https://www.hungerfreevt.org/" class="visit-btn" target="_blank" rel="noopener" aria-label="Visit Hunger Free Vermont website">Visit site</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category 3: Developmental Disabilities -->
+    <div class="category-section">
+      <h2 class="category-title"><i class="fa-solid fa-heart"></i> Developmental Disabilities</h2>
+      <div class="resource-list">
+        <div class="resource-item">
+          <div class="r-icon" aria-hidden="true"><i class="fa-solid fa-stethoscope"></i></div>
+          <div class="r-info">
+            <h2>Washington County Mental Health — Community Developmental Services</h2>
+            <p>Serves individuals experiencing developmental disabilities, autism, and traumatic brain injury. Offers services supporting autonomy, independence, skill building, nursing, psychiatry, and residential care. Available 24/7 at 802-229-0591.</p>
+          </div>
+          <a href="https://www.wcmhs.org/community-development-services" class="visit-btn" target="_blank" rel="noopener" aria-label="Visit Washington County Mental Health website">Visit site</a>
+        </div>
+        <div class="resource-item">
+          <div class="r-icon" aria-hidden="true"><i class="fa-solid fa-arrow-right-to-bracket"></i></div>
+          <div class="r-info">
+            <h2>Transition II</h2>
+            <p>A Vermont nonprofit promoting independence for aging Vermonters and those with disabilities through employment, community involvement, and home care choices. Offers self-management support, budget guidance, and job matching. Call 866-572-7127.</p>
+          </div>
+          <a href="https://transitionii.com/" class="visit-btn" target="_blank" rel="noopener" aria-label="Visit Transition II website">Visit site</a>
+        </div>
+        <div class="resource-item">
+          <div class="r-icon" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></div>
+          <div class="r-info">
+            <h2>Upper Valley Services (Orange County)</h2>
+            <p>A state Designated Agency providing person-centered supports for individuals with developmental disabilities in Orange County and surrounding areas. Bradford: 802-222-9235 | Randolph: 802-728-4476.</p>
+          </div>
+          <a href="https://www.uvs-vt.org/" class="visit-btn" target="_blank" rel="noopener" aria-label="Visit Upper Valley Services website">Visit site</a>
+        </div>
+        <div class="resource-item">
+          <div class="r-icon" aria-hidden="true"><i class="fa-solid fa-star"></i></div>
+          <div class="r-info">
+            <h2>Specialized Community Care (SCC)</h2>
+            <p>A Vermont Specialized Service Agency serving people with developmental and intellectual disabilities statewide. Known for working with individuals with unique and complex needs. Call 802-388-6388.</p>
+          </div>
+          <a href="https://sccvt.org/" class="visit-btn" target="_blank" rel="noopener" aria-label="Visit Specialized Community Care website">Visit site</a>
+        </div>
+        <div class="resource-item">
+          <div class="r-icon" aria-hidden="true"><i class="fa-solid fa-hand-holding-heart"></i></div>
+          <div class="r-info">
+            <h2>Special Needs Support Center (SNSC)</h2>
+            <p>Provides inclusive community care through adult and youth programming, advocacy and support services, and community resources for individuals with special needs and their families in the Upper Valley region.</p>
+          </div>
+          <a href="https://snsc-uv.org/" class="visit-btn" target="_blank" rel="noopener" aria-label="Visit Special Needs Support Center website">Visit site</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category 4: Neurodiverse -->
+    <div class="category-section">
+      <h2 class="category-title"><i class="fa-solid fa-puzzle-piece"></i> Neurodiverse</h2>
+      <div class="resource-list">
+        <div class="resource-item">
+          <div class="r-icon" aria-hidden="true"><i class="fa-solid fa-puzzle-piece"></i></div>
+          <div class="r-info">
+            <h2>All Brains Belong VT</h2>
+            <p>A Vermont-based organization focused on neuroinclusive healthcare and community. Offers programs that celebrate and support all kinds of minds, with an emphasis on belonging and inclusion for neurodivergent individuals.</p>
+          </div>
+          <a href="https://allbrainsbelong.org/" class="visit-btn" target="_blank" rel="noopener" aria-label="Visit All Brains Belong VT website">Visit site</a>
+        </div>
+        <div class="resource-item">
+          <div class="r-icon" aria-hidden="true"><i class="fa-solid fa-star"></i></div>
+          <div class="r-info">
+            <h2>Aspire Living &amp; Learning</h2>
+            <p>A nonprofit human services and educational organization offering behavioral health, clinical, residential, educational and transitional services, community-based day services, and employment supports for individuals and families.</p>
+          </div>
+          <a href="https://allinc.org/" class="visit-btn" target="_blank" rel="noopener" aria-label="Visit Aspire Living and Learning website">Visit site</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category 5: Vision & Hearing -->
+    <div class="category-section">
+      <h2 class="category-title"><i class="fa-solid fa-eye"></i> Vision &amp; Hearing</h2>
+      <div class="resource-list">
+        <div class="resource-item">
+          <div class="r-icon" aria-hidden="true"><i class="fa-solid fa-eye"></i></div>
+          <div class="r-info">
+            <h2>Vermont Association for the Blind and Visually Impaired (VABVI)</h2>
+            <p>Vermont's only private nonprofit providing free services to individuals with vision loss of all ages. Services include orientation and mobility training, daily living skills, assistive technology, and volunteer transportation. Call 802-863-1358.</p>
+          </div>
+          <a href="https://www.vabvi.org/" class="visit-btn" target="_blank" rel="noopener" aria-label="Visit VABVI website">Visit site</a>
+        </div>
+        <div class="resource-item">
+          <div class="r-icon" aria-hidden="true"><i class="fa-solid fa-hands"></i></div>
+          <div class="r-info">
+            <h2>Vermont Association of the Deaf (VTAD)</h2>
+            <p>A Vermont nonprofit dedicated to protecting the rights of Deaf individuals and their families, empowering self-determination and independence, and advocating for equal opportunities in social, educational, and employment settings. Call 802-858-2323.</p>
+          </div>
+          <a href="https://www.deafvermont.com/" class="visit-btn" target="_blank" rel="noopener" aria-label="Visit Vermont Association of the Deaf website">Visit site</a>
+        </div>
+      </div>
+    </div>
+
   </main>
 
   <footer>
