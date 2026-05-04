@@ -194,28 +194,61 @@
     }
 
     .category-section {
-      margin-bottom: 40px;
+      margin-bottom: 16px;
     }
     .category-title {
       font-family: 'Nunito', sans-serif;
       font-size: 20px;
       font-weight: 700;
       color: #1A5FA8;
-      margin-bottom: 16px;
-      padding: 10px 16px;
+      margin-bottom: 0;
+      padding: 14px 16px;
       background: #EBF3FC;
       border-left: 5px solid #1A5FA8;
       border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
       display: flex;
       align-items: center;
       gap: 10px;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.2s;
     }
-    .category-title i { font-size: 18px; color: #1A5FA8; }
+    .category-title:hover { background: #d9eaf9; }
+    .category-title i.cat-icon { font-size: 18px; color: #1A5FA8; }
+    .category-title .cat-label { flex: 1; }
+    .category-title .arrow {
+      font-size: 14px;
+      color: #1A5FA8;
+      transition: transform 0.25s;
+      margin-left: auto;
+    }
+    .category-title.open .arrow { transform: rotate(180deg); }
+    button.category-title {
+      width: 100%;
+      border: none;
+      text-align: left;
+      font-family: 'Nunito', sans-serif;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .category-body {
+      display: none;
+      padding: 16px 0 8px;
+      border-left: 5px solid #1A5FA8;
+      border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+      padding-left: 0;
+    }
+    .category-body.open { display: block; }
 
     .resource-list {
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 12px;
+      padding: 4px 0 8px;
     }
 
     .resource-item {
@@ -414,8 +447,9 @@
 
     <!-- Category 1: General Support -->
     <div class="category-section">
-      <h2 class="category-title"><i class="fa-solid fa-hands-holding-circle"></i> General Support</h2>
-      <div class="resource-list">
+      <button class="category-title" onclick="toggleCategory(this)" aria-expanded="false"><i class="fa-solid fa-hands-holding-circle cat-icon"></i><span class="cat-label">General Support</span><i class="fa-solid fa-chevron-down arrow"></i></button>
+      <div class="category-body">
+        <div class="resource-list">
         <div class="resource-item">
           <div class="r-icon" aria-hidden="true"><i class="fa-solid fa-hands-holding-circle"></i></div>
           <div class="r-info">
@@ -456,13 +490,15 @@
           </div>
           <a href="https://www.vermontfamilynetwork.org/" class="visit-btn" target="_blank" rel="noopener" aria-label="Visit Vermont Family Network website">Visit site</a>
         </div>
+        </div>
       </div>
     </div>
 
     <!-- Category 2: Independent Living -->
     <div class="category-section">
-      <h2 class="category-title"><i class="fa-solid fa-house-chimney"></i> Independent Living</h2>
-      <div class="resource-list">
+      <button class="category-title" onclick="toggleCategory(this)" aria-expanded="false"><i class="fa-solid fa-house-chimney cat-icon"></i><span class="cat-label">Independent Living</span><i class="fa-solid fa-chevron-down arrow"></i></button>
+      <div class="category-body">
+        <div class="resource-list">
         <div class="resource-item">
           <div class="r-icon" aria-hidden="true"><i class="fa-solid fa-brain"></i></div>
           <div class="r-info">
@@ -487,13 +523,15 @@
           </div>
           <a href="https://www.hungerfreevt.org/" class="visit-btn" target="_blank" rel="noopener" aria-label="Visit Hunger Free Vermont website">Visit site</a>
         </div>
+        </div>
       </div>
     </div>
 
     <!-- Category 3: Developmental Disabilities -->
     <div class="category-section">
-      <h2 class="category-title"><i class="fa-solid fa-heart"></i> Developmental Disabilities</h2>
-      <div class="resource-list">
+      <button class="category-title" onclick="toggleCategory(this)" aria-expanded="false"><i class="fa-solid fa-heart cat-icon"></i><span class="cat-label">Developmental Disabilities</span><i class="fa-solid fa-chevron-down arrow"></i></button>
+      <div class="category-body">
+        <div class="resource-list">
         <div class="resource-item">
           <div class="r-icon" aria-hidden="true"><i class="fa-solid fa-stethoscope"></i></div>
           <div class="r-info">
@@ -534,13 +572,15 @@
           </div>
           <a href="https://snsc-uv.org/" class="visit-btn" target="_blank" rel="noopener" aria-label="Visit Special Needs Support Center website">Visit site</a>
         </div>
+        </div>
       </div>
     </div>
 
     <!-- Category 4: Neurodiverse -->
     <div class="category-section">
-      <h2 class="category-title"><i class="fa-solid fa-puzzle-piece"></i> Neurodiverse</h2>
-      <div class="resource-list">
+      <button class="category-title" onclick="toggleCategory(this)" aria-expanded="false"><i class="fa-solid fa-puzzle-piece cat-icon"></i><span class="cat-label">Neurodiverse</span><i class="fa-solid fa-chevron-down arrow"></i></button>
+      <div class="category-body">
+        <div class="resource-list">
         <div class="resource-item">
           <div class="r-icon" aria-hidden="true"><i class="fa-solid fa-puzzle-piece"></i></div>
           <div class="r-info">
@@ -557,13 +597,15 @@
           </div>
           <a href="https://allinc.org/" class="visit-btn" target="_blank" rel="noopener" aria-label="Visit Aspire Living and Learning website">Visit site</a>
         </div>
+        </div>
       </div>
     </div>
 
     <!-- Category 5: Vision & Hearing -->
     <div class="category-section">
-      <h2 class="category-title"><i class="fa-solid fa-eye"></i> Vision &amp; Hearing</h2>
-      <div class="resource-list">
+      <button class="category-title" onclick="toggleCategory(this)" aria-expanded="false"><i class="fa-solid fa-eye cat-icon"></i><span class="cat-label">Vision &amp; Hearing</span><i class="fa-solid fa-chevron-down arrow"></i></button>
+      <div class="category-body">
+        <div class="resource-list">
         <div class="resource-item">
           <div class="r-icon" aria-hidden="true"><i class="fa-solid fa-eye"></i></div>
           <div class="r-info">
@@ -580,6 +622,7 @@
           </div>
           <a href="https://www.deafvermont.com/" class="visit-btn" target="_blank" rel="noopener" aria-label="Visit Vermont Association of the Deaf website">Visit site</a>
         </div>
+        </div>
       </div>
     </div>
 
@@ -592,6 +635,12 @@
   </footer>
 
   <script>
+    function toggleCategory(btn) {
+      var body = btn.nextElementSibling;
+      var isOpen = body.classList.toggle('open');
+      btn.classList.toggle('open', isOpen);
+      btn.setAttribute('aria-expanded', isOpen);
+    }
     function toggleMenu(btn) {
       var menu = document.getElementById('nav-menu');
       var isOpen = menu.classList.toggle('open');
